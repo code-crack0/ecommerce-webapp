@@ -4,5 +4,31 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
+  
+}
+.items{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 20px;
+    
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 50px;
+    max-width: 1300px;  
+}
+.single_item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    transition: 0.3s;
+    cursor: pointer;
+}
+.single_item:hover{
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
 }
