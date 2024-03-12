@@ -1,4 +1,6 @@
-
+*{
+    font-family: Verdana, Helvetica, Arial;
+}
 
 .sign-in,.sign-up{
     display: flex;
@@ -13,22 +15,33 @@
     
     align-items: center;
     width: 100%;
-    margin: 0 auto;
+    margin: 0 auto; 
     padding: 0 50px;
     max-width: 1300px;  
 }
-.single_item{
+.single_item {
+    aspect-ratio: 0.9;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
     text-align: center;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     transition: 0.3s;
+    font-size: 10px;
     cursor: pointer;
 }
+
+.single_item_title {
+    height: 60px;
+}
+.single_item_title h1 {
+    font-size: 12px;
+}
+
+
 .single_item:hover{
     box-shadow: 0 0 10px rgba(0,0,0,0.3);
 }

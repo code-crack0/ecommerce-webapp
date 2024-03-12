@@ -16,8 +16,9 @@ const HomePage = () => {
   return (
     <>
     {
-        isLoaded && user ? (
+            isLoaded && user ? (
             <div>
+            <h1>Welcome USER!</h1>
             <h1>Welcome {user.fullName +  ' ' + user.primaryEmailAddress}</h1>
             <UserButton afterSignOutUrl='/sign-in'/>
             </div>
@@ -38,9 +39,10 @@ const HomePage = () => {
             data && data.map((item) => {
                 return (
                     <div key={item.id} className='single_item'>
-                        <h1>{item.title}</h1>
+                        <div className='single_item_title'><h1>{item.title}</h1></div>
+                        
                         <img src={item.image} alt={item.title} height={100} width={100} />
-                        <p>{item.description}</p>
+                        <p>{item.description.length > 80 ? item.description.substring(0, 80) + '...' : item.description}</p>
                         <p>{item.price}</p>
                     </div>
                 )

@@ -18,7 +18,6 @@ const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
-
       <App />
     </ClerkProvider>
   </React.StrictMode>
