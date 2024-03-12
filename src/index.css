@@ -45,3 +45,18 @@
 .single_item:hover{
     box-shadow: 0 0 10px rgba(0,0,0,0.3);
 }
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+}
+.signin_button{
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f1f1f1;
+    cursor: pointer;
+    transition: 0.3s;
+}

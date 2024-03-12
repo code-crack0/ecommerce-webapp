@@ -16,21 +16,15 @@ const HomePage = () => {
   return (
     <>
     {
-            isLoaded && user ? (
-            <div>
-            <h1>Welcome USER!</h1>
-            <h1>Welcome {user.fullName +  ' ' + user.primaryEmailAddress}</h1>
-            <UserButton afterSignOutUrl='/sign-in'/>
-            </div>
-        )
-        :(
-            <div>
-                You are not Signed In.
-                <Link to='/sign-in'>
-                    Sign In
-                </Link>
-            </div>
-        )
+            
+            <header className='header'>
+                <h3>Ecommerce Logo</h3>
+                {
+                    isLoaded && user ? <UserButton signInUrl='/sign-in' showName afterSignOutUrl='/sign-in'/> : <Link to='/sign-in'><button className='signin_button'>Sign In</button></Link>
+                }
+            </header>
+            
+        
 
 
     }
