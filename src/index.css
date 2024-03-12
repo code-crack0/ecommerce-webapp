@@ -12,12 +12,27 @@
     display: grid;
     grid-template-columns: repeat(4,1fr);
     gap: 20px;
-    
     align-items: center;
-    width: 100%;
-    margin: 0 auto; 
-    padding: 0 50px;
+    width: 100%; 
+    padding: 0 40px;
     max-width: 1300px;  
+    margin: 0 auto;
+}
+/* make the .items resposive for different screens*/
+@media (max-width: 1400px) {
+    .items {
+        grid-template-columns: repeat(3,1fr);
+    }
+}
+@media (max-width: 900px) {
+    .items {
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+@media (max-width: 600px) {
+    .items {
+        grid-template-columns: repeat(1,1fr);
+    }
 }
 .single_item {
     aspect-ratio: 0.9;
@@ -26,7 +41,7 @@
     justify-content: flex-start;
     flex-direction: column;
     text-align: center;
-    padding: 20px;
+    padding: 10px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     transition: 0.3s;
@@ -51,6 +66,27 @@
     justify-content: space-between;
     align-items: center;
     padding: 20px 50px;
+}
+.header__right{
+    display: flex;
+    align-items: center;
+    gap:10px
+}
+.search__input{
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f1f1f1;
+    cursor: pointer;
+    transition: 0.3s;
+
+}
+.logo{
+    font-size: 20px;
+    font-weight: bold;
+    color: #c45252;
+    text-decoration: none;
+
 }
 .signin_button{
     padding: 10px 20px;
