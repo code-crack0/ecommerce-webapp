@@ -24,7 +24,6 @@
     grid-template-columns: repeat(2,1fr);
     margin: 20px;
     gap: 20px;
-    
     align-items: center;
     width: 100%;
     margin: 0;
@@ -47,13 +46,13 @@
     }
 }
 .single_item {
-    aspect-ratio: 0.8;
+    aspect-ratio: 1.2;
     display: flex;
     align-items: center;
     justify-content: flex-start;
     flex-direction: column;
     text-align: center;
-    padding: 20px;
+    padding: 10px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     transition: 0.3s;
@@ -80,6 +79,27 @@
     justify-content: space-between;
     align-items: center;
     padding: 20px 50px;
+}
+.header__right{
+    display: flex;
+    align-items: center;
+    gap:10px
+}
+.search__input{
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f1f1f1;
+    cursor: pointer;
+    transition: 0.3s;
+
+}
+.logo{
+    font-size: 20px;
+    font-weight: bold;
+    color: #c45252;
+    text-decoration: none;
+
 }
 .signin_button{
     padding: 10px 20px;

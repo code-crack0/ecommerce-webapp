@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { useUser, UserButton } from '@clerk/clerk-react'
-import { Link } from 'react-router-dom'
+
 import axios from 'axios'
+import Header from '../components/Header'
 const HomePage = () => {
-  const { isLoaded, user } = useUser()
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(false)
   const fetchData = async () => {
@@ -15,30 +14,9 @@ const HomePage = () => {
   useEffect(() => {
     fetchData()
   }, [])
-  function truncString(s, charCount) {
-    if (s.length < charCount) return s
-    const tmp = s.substring(0, charCount)
-    const res = tmp.substring(0, tmp.lastIndexOf(' ')) + '...'
-    return res
-  }
   return (
     <>
-      {
-        <header className='header'>
-          <h3>Ecommerce Logo</h3>
-          {isLoaded && user ? (
-            <UserButton
-              signInUrl='/sign-in'
-              showName
-              afterSignOutUrl='/sign-in'
-            />
-          ) : (
-            <Link to='/sign-in'>
-              <button className='signin_button'>Sign In</button>
-            </Link>
-          )}
-        </header>
-      }
+      <Header />
       {loading ? (
         <div className='loading'>
           <div class='lds-dual-ring'></div>
@@ -46,25 +24,28 @@ const HomePage = () => {
       ) : (
         <div id='wrapper'>
           <div className='items'>
-            {data &&
-              data.map((item) => {
-                return (
-                  <div key={item.id} className='single_item'>
-                    <div className='single_item_title'>
-                      <h1>{truncString(item.title, 40)}</h1>
-                    </div>
-
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      height={100}
-                      width={100}
-                    />
-                    <p>{truncString(item.description, 80)}</p>
-                    <p>{item.price}</p>
+            {data.map((item) => {
+              return (
+                <div className='single_item' key={item.id}>
+                  <div className='single_item_title'>
+                    <h1>{item.title}</h1>
                   </div>
-                )
-              })}
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    height={100}
+                    width={100}
+                  />
+
+                  <p>
+                    {item.description.length > 80
+                      ? item.description.substring(0, 80) + '...'
+                      : item.description}
+                  </p>
+                  <p>{item.price}</p>
+                </div>
+              )
+            })}
           </div>
         </div>
       )}
