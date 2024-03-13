@@ -5,6 +5,12 @@ import Header from '../components/Header'
 const HomePage = () => {
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(false)
+  function truncString(s, charCount) {
+    if (s.length < charCount) return s
+    const tmp = s.substring(0, charCount)
+    const res = tmp.substring(0, tmp.lastIndexOf(' ')) + '...'
+    return res
+  }
   const fetchData = async () => {
     setLoading(true)
     const response = await axios.get('https://fakestoreapi.com/products')
@@ -28,7 +34,7 @@ const HomePage = () => {
               return (
                 <div className='single_item' key={item.id}>
                   <div className='single_item_title'>
-                    <h1>{item.title}</h1>
+                    <h1>{truncString(item.title, 40)}</h1>
                   </div>
                   <img
                     src={item.image}
@@ -37,12 +43,8 @@ const HomePage = () => {
                     width={100}
                   />
 
-                  <p>
-                    {item.description.length > 80
-                      ? item.description.substring(0, 80) + '...'
-                      : item.description}
-                  </p>
-                  <p>{item.price}</p>
+                  <p>{truncString(item.description, 80)}</p>
+                  <p id='price'>AED {item.price}</p>
                 </div>
               )
             })}

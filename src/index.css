@@ -1,6 +1,10 @@
 *{
-    font-family: Verdana, Helvetica, Arial;
+    font-family: Tahoma, Helvetica, Verdana, Arial;
     box-sizing: border-box;
+}
+
+body {
+    background-color: #f9fcff;
 }
 
 .sign-in,.sign-up{
@@ -31,6 +35,13 @@
     /* padding: 0 50px; */
     /* max-width: 1300px;   */
 }
+
+#price {
+    margin-top: 30px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
 @media screen and (min-width:900px){
     .items{
         grid-template-columns: repeat(3,1fr);
@@ -46,6 +57,7 @@
     }
 }
 .single_item {
+    background-color: #fff;
     aspect-ratio: 1.2;
     display: flex;
     align-items: center;
@@ -97,7 +109,9 @@
 .logo{
     font-size: 20px;
     font-weight: bold;
-    color: #c45252;
+    font-style: italic;
+    color: #171558;
+    /* color: #c45252; */
     text-decoration: none;
 
 }
