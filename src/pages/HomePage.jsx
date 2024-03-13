@@ -5,14 +5,16 @@ import axios from 'axios'
 const HomePage = () => {
   const { isLoaded, user } = useUser()
   const [data, setData] = useState([])
+  const [loading, setLoading] = useState(false)
   const fetchData = async () => {
+    setLoading(true)
     const response = await axios.get('https://fakestoreapi.com/products')
     setData(response.data)
+    setLoading(false)
   }
   useEffect(() => {
     fetchData()
   }, [])
-
   function truncString(s, charCount) {
     if (s.length < charCount) return s
     const tmp = s.substring(0, charCount)
@@ -21,41 +23,51 @@ const HomePage = () => {
   }
   return (
     <>
-      {isLoaded && user ? (
-        <div>
-          <h1>Welcome USER!</h1>
-          <h1>Welcome {user.fullName + ' ' + user.primaryEmailAddress}</h1>
-          <UserButton afterSignOutUrl='/sign-in' />
+      {
+        <header className='header'>
+          <h3>Ecommerce Logo</h3>
+          {isLoaded && user ? (
+            <UserButton
+              signInUrl='/sign-in'
+              showName
+              afterSignOutUrl='/sign-in'
+            />
+          ) : (
+            <Link to='/sign-in'>
+              <button className='signin_button'>Sign In</button>
+            </Link>
+          )}
+        </header>
+      }
+      {loading ? (
+        <div className='loading'>
+          <div class='lds-dual-ring'></div>
         </div>
       ) : (
-        <div>
-          You are not Signed In.
-          <Link to='/sign-in'>Sign In</Link>
+        <div id='wrapper'>
+          <div className='items'>
+            {data &&
+              data.map((item) => {
+                return (
+                  <div key={item.id} className='single_item'>
+                    <div className='single_item_title'>
+                      <h1>{truncString(item.title, 40)}</h1>
+                    </div>
+
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      height={100}
+                      width={100}
+                    />
+                    <p>{truncString(item.description, 80)}</p>
+                    <p>{item.price}</p>
+                  </div>
+                )
+              })}
+          </div>
         </div>
       )}
-      <div id='wrapper'>
-        <div className='items'>
-          {data &&
-            data.map((item) => {
-              return (
-                <div key={item.id} className='single_item'>
-                  <div className='single_item_title'>
-                    <h1>{truncString(item.title, 40)}</h1>
-                  </div>
-
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    height={100}
-                    width={100}
-                  />
-                  <p>{truncString(item.description, 80)}</p>
-                  <p>{item.price}</p>
-                </div>
-              )
-            })}
-        </div>
-      </div>
     </>
   )
 }
