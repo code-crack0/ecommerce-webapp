@@ -1,16 +1,21 @@
 import React, { useState } from 'react'
 import { useUser,UserButton} from '@clerk/clerk-react'
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { searchData } from '../features/data/dataSlice';
 const Header = () => {
+    const cart = useSelector((state) => state.cart);
     const dispatch = useDispatch();
     const {isLoaded, user} = useUser();
     const [search,setSearch] = useState('');
+    const [cartOpen,setCartOpen] = useState(false);
     const handleSearch = (e) => {
         e.preventDefault();
         dispatch(searchData(search))
         
+    }
+    const handleCart = () => {
+        setCartOpen(!cartOpen)
     }
   return (
     
@@ -23,9 +28,22 @@ const Header = () => {
                     (e) => setSearch(e.target.value)
                 }/>
                 </form>
-            {
-                isLoaded && user ? <UserButton signInUrl='/sign-in' showName afterSignOutUrl='/sign-in'/> : <Link to='/sign-in'><button className='signin_button'>Sign In</button></Link>
-            }
+            
+                {isLoaded && user ? <UserButton signInUrl='/sign-in' showName afterSignOutUrl='/sign-in'/> : <Link to='/sign-in'><button className='signin_button'>Sign In</button></Link>}
+                <img src='/cart.svg' alt='cart' height={30} width={30} className='cart__image' onClick={handleCart}/>
+                {cartOpen && (
+                    <div className='cart-box'>
+                        {
+                            cart.length === 0 ? <h3>Cart is empty</h3> : cart.map((item) => {
+                                return (
+                                    <div className='cart-item' key={item.id}>
+                                        <h4>{item.title}</h4>
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
+                )}
             </div>
         </header>
         
