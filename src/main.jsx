@@ -8,14 +8,13 @@ import { ClerkProvider } from '@clerk/clerk-react'
 import { Provider } from 'react-redux'
 // Import your publishable key
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
- 
-if (!PUBLISHABLE_KEY) {
-  throw new Error("Missing Publishable Key")
-}
- 
 
-const container = document.getElementById("root");
-const root = createRoot(container);
+if (!PUBLISHABLE_KEY) {
+  throw new Error('Missing Publishable Key')
+}
+
+const container = document.getElementById('root')
+const root = createRoot(container)
 root.render(
   <React.StrictMode>
     <Provider store={store}>
@@ -24,4 +23,4 @@ root.render(
     </ClerkProvider>
     </Provider>
   </React.StrictMode>
-);
+)

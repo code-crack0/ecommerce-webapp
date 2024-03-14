@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {Link} from 'react-router-dom'
+
 import axios from 'axios'
 import Header from '../components/Header'
 import { useSelector,useDispatch } from 'react-redux';
@@ -11,13 +11,12 @@ const HomePage = ({loading}) => {
     
   return (
     <>
-    <Header/>
-    {
-        loading ? 
+      <Header />
+      {loading ? (
         <div className='loading'>
             <div className="lds-dual-ring"></div>
         </div>
-        :
+      ):
         <div className="items">
             {
                 searchResults.length === 0 ? data?.map((item) => {
@@ -45,7 +44,7 @@ const HomePage = ({loading}) => {
                 })
             }
         </div>
-    }
+        }
     </>
   )
 }

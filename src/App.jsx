@@ -23,13 +23,13 @@ export default function App() {
     }
     ,[])
   return (
-   <BrowserRouter>
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage loading={loading}/>} />
         <Route path="/sign-up" element={<SignUpPage/>} />
         <Route path="/sign-in" element={<SignInPage/>} />
         
       </Routes>
-   </BrowserRouter>
+    </BrowserRouter>
   )
 }
