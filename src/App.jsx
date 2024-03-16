@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { setData } from './features/data/dataSlice';
+import ItemPage from './pages/ItemPage';
 
 export default function App() {
     const dispatch = useDispatch();
@@ -28,7 +29,7 @@ export default function App() {
         <Route path="/" element={<HomePage loading={loading}/>} />
         <Route path="/sign-up" element={<SignUpPage/>} />
         <Route path="/sign-in" element={<SignInPage/>} />
-        
+        <Route path='/item' element={<ItemPage/>}/>
       </Routes>
     </BrowserRouter>
   )

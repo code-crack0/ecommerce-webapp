@@ -113,9 +113,26 @@ body {
     box-shadow: 0 0 10px rgba(0,0,0,0.7);
 
 }
+/*media queries for the searchbar*/
+
+@media screen and (max-width: 600px){
+    .search__input{
+        padding: 10px 10px;
+    }
+}
+@media screen and (max-width: 400px){
+    .search__input{
+        padding: 10px 5px;
+    }
+}
 .cart__image{
     cursor: pointer;
     margin-left: 5px;
+}
+.cart-item{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 .cart-box {
     position: absolute;
@@ -126,7 +143,7 @@ body {
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     padding: 10px;
-    width: 200px; /* Adjust width according to your design */
+    width: 500px; /* Adjust width according to your design */
     z-index: 1000; /* Ensure it appears above other content */
 }
 
@@ -143,6 +160,18 @@ body {
     /* color: #c45252; */
     text-decoration: none;
 
+}
+/* media queries for the logo*/
+
+@media screen and (max-width: 600px){
+    .logo{
+        font-size: 15px;
+    }
+}
+@media screen and (max-width: 400px){
+    .logo{
+        font-size: 10px;
+    }
 }
 .signin_button{
     padding: 10px 20px;
