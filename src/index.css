@@ -57,6 +57,7 @@ body {
     }
 }
 .single_item {
+    cursor: pointer;
     background-color: #fff;
     aspect-ratio: 1.2;
     display: flex;
