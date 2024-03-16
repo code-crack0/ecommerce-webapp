@@ -43,35 +43,9 @@ const ItemPage = () => {
     <>
       <Header />
 
-      <div
-        style={{
-          // backgroundColor: 'red',
-          backgroundColor: '#fff',
-          borderRadius: '10px',
-          boxShadow: '0 0 10px rgba(0,0,0,0.1)',
-          height: '80vh',
-          width: 'auto',
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'flex-start',
-          alignItems: 'center',
-          padding: '50px',
-          margin: '0 300px',
-        }}
-      >
+      <div className='itemcontainer'>
         <img src={item.image} alt={item.title} height={'100%'} width={'auto'} />
-        <div
-          style={{
-            display: 'flex',
-            // backgroundColor: 'red',
-            height: '100%',
-            width: '100%',
-            flexDirection: 'column',
-            justifyContent: 'flex-start',
-            alignItems: 'center',
-            padding: '50px',
-          }}
-        >
+        <div className='iteminfo'>
           <p style={{ fontSize: '36px' }}>{item.title}</p>
           <p style={{ fontSize: '22px', fontWeight: 'lighter' }}>
             {item.description}
@@ -86,15 +60,7 @@ const ItemPage = () => {
             AED {item.price}
           </p>
           <button
-            style={{
-              backgroundColor: 'white',
-              padding: '12px',
-              borderRadius: '4px',
-              fontWeight: 'bold',
-              fontSize: '16px',
-              margin: '50px 0 0 auto',
-              cursor: 'pointer',
-            }}
+            className='cartbutton'
             onClick={(_) => {
               handleAddToCart(item)
             }}

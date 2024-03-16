@@ -3,9 +3,6 @@ import { useParams } from 'react-router-dom'
 import axios from 'axios'
 
 import Header from '../components/Header'
-import { configureStore } from '@reduxjs/toolkit'
-import cartSlice, { addToCart } from '../features/cart/cartSlice'
-import { store } from '../store'
 import { useSelector } from 'react-redux'
 
 const CheckoutPage = () => {
@@ -13,11 +10,6 @@ const CheckoutPage = () => {
   const [loading, setLoading] = useState(false)
   // const [items, setItems] = useState(null)
   const items = useSelector((state) => state.cart)
-
-  function handleAddToCart(item) {
-    addToCart(item)
-    console.log(store.getState())
-  }
 
   function truncString(s, charCount) {
     if (s.length < charCount) return s
@@ -42,13 +34,11 @@ const CheckoutPage = () => {
       {items.map((item) => (
         <div
           style={{
-            // backgroundColor: 'red',
             display: 'flex',
             flexDirection: 'column',
             backgroundColor: '#fff',
             borderRadius: '10px',
             boxShadow: '0 0 10px rgba(0,0,0,0.1)',
-            // height: '80vh',
             width: 'auto',
             justifyContent: 'flex-start',
             alignItems: 'center',
@@ -70,18 +60,7 @@ const CheckoutPage = () => {
               height={'150px'}
               width={'auto'}
             />
-            <div
-              style={{
-                display: 'flex',
-                // backgroundColor: 'red',
-                height: '100%',
-                width: '100%',
-                flexDirection: 'column',
-                justifyContent: 'flex-start',
-                alignItems: 'flex-start',
-                padding: '50px',
-              }}
-            >
+            <div className='checkoutinfo'>
               <p style={{ fontSize: '20px' }}>{item.title}</p>
               <p style={{ fontSize: '12px', fontWeight: 'lighter' }}>
                 {truncString(item.description, 200)}
@@ -95,22 +74,6 @@ const CheckoutPage = () => {
               >
                 AED {item.price}
               </p>
-              {/* <button
-                style={{
-                  backgroundColor: 'white',
-                  padding: '12px',
-                  borderRadius: '4px',
-                  fontWeight: 'bold',
-                  fontSize: '16px',
-                  margin: '50px 0 0 auto',
-                  cursor: 'pointer',
-                  onclick: (_) => {
-                    handleAddToCart(item)
-                  },
-                }}
-              >
-                + Add to Cart
-              </button> */}
             </div>
           </div>
         </div>

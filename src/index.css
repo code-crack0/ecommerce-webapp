@@ -213,3 +213,46 @@ body {
     align-items: center;
   }
   
+  .itemcontainer {
+    background-color:  #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    height: 80vh;
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 50px;
+    margin: 0 300px;
+  }
+
+  .iteminfo {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 50px;
+  }
+
+  .checkoutinfo {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 50px;
+  }
+
+  .cartbutton {
+    background-color: white;
+    padding: 12px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 16px;
+    margin: 50px 0 0 auto;
+    cursor: pointer;
+  }
