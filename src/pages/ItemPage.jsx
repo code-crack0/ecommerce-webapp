@@ -6,15 +6,19 @@ import Header from '../components/Header'
 import { configureStore } from '@reduxjs/toolkit'
 import cartSlice, { addToCart } from '../features/cart/cartSlice'
 import { store } from '../store'
+import { useDispatch, useSelector } from 'react-redux'
 
 const ItemPage = () => {
   const { id } = useParams()
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(false)
   const [item, setItem] = useState(null)
+  const dispatch = useDispatch()
 
   function handleAddToCart(item) {
-    addToCart(item)
+    // addToCart(item)
+    console.log('Adding to cart')
+    dispatch(addToCart(item))
     console.log(store.getState())
   }
 
@@ -90,9 +94,9 @@ const ItemPage = () => {
               fontSize: '16px',
               margin: '50px 0 0 auto',
               cursor: 'pointer',
-              onclick: (_) => {
-                handleAddToCart(item)
-              },
+            }}
+            onClick={(_) => {
+              handleAddToCart(item)
             }}
           >
             + Add to Cart

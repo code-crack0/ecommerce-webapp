@@ -6,11 +6,13 @@ import Header from '../components/Header'
 import { configureStore } from '@reduxjs/toolkit'
 import cartSlice, { addToCart } from '../features/cart/cartSlice'
 import { store } from '../store'
+import { useSelector } from 'react-redux'
 
 const CheckoutPage = () => {
   const { id } = useParams()
   const [loading, setLoading] = useState(false)
-  const [items, setItems] = useState(null)
+  // const [items, setItems] = useState(null)
+  const items = useSelector((state) => state.cart)
 
   function handleAddToCart(item) {
     addToCart(item)
@@ -25,8 +27,9 @@ const CheckoutPage = () => {
   }
   const fetchData = async () => {
     setLoading(true)
-    const response = await axios.get('https://fakestoreapi.com/products/')
-    setItems(response.data)
+
+    // const response = await axios.get('https://fakestoreapi.com/products/')
+    // setItems(response.data)
     setLoading(false)
   }
   useEffect(() => {
