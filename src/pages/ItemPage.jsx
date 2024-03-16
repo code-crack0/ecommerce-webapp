@@ -1,11 +1,23 @@
 import React, { useEffect, useState } from 'react'
-
+import { useParams } from 'react-router-dom'
 import axios from 'axios'
+
 import Header from '../components/Header'
+import { configureStore } from '@reduxjs/toolkit'
+import cartSlice, { addToCart } from '../features/cart/cartSlice'
+import { store } from '../store'
+
 const ItemPage = () => {
+  const { id } = useParams()
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(false)
   const [item, setItem] = useState(null)
+
+  function handleAddToCart(item) {
+    addToCart(item)
+    console.log(store.getState())
+  }
+
   function truncString(s, charCount) {
     if (s.length < charCount) return s
     const tmp = s.substring(0, charCount)
@@ -14,8 +26,8 @@ const ItemPage = () => {
   }
   const fetchData = async () => {
     setLoading(true)
-    const response = await axios.get('https://fakestoreapi.com/products')
-    setItem(response.data[0])
+    const response = await axios.get('https://fakestoreapi.com/products/' + id)
+    setItem(response.data)
     setData(response.data)
     setLoading(false)
   }
@@ -50,7 +62,6 @@ const ItemPage = () => {
             // backgroundColor: 'red',
             height: '100%',
             width: '100%',
-            display: 'flex',
             flexDirection: 'column',
             justifyContent: 'flex-start',
             alignItems: 'center',
@@ -78,6 +89,10 @@ const ItemPage = () => {
               fontWeight: 'bold',
               fontSize: '16px',
               margin: '50px 0 0 auto',
+              cursor: 'pointer',
+              onclick: (_) => {
+                handleAddToCart(item)
+              },
             }}
           >
             + Add to Cart
