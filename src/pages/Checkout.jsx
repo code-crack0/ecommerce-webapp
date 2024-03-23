@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import axios from 'axios'
-
 import Header from '../components/Header'
+
+import React from 'react'
+import { connect } from 'react-redux'
+import { createStructuredSelector } from 'reselect'
+
+import StripeCheckoutButton from '../components/StripeButton'
 import { useSelector } from 'react-redux'
 
 const CheckoutPage = () => {
-  const { id } = useParams()
-  const [loading, setLoading] = useState(false)
-  // const [items, setItems] = useState(null)
   const items = useSelector((state) => state.cart)
+  const total = items.map((e) => e.price).reduce((a, b) => a + b)
 
   function truncString(s, charCount) {
     if (s.length < charCount) return s
@@ -17,22 +17,13 @@ const CheckoutPage = () => {
     const res = tmp.substring(0, tmp.lastIndexOf(' ')) + '...'
     return res
   }
-  const fetchData = async () => {
-    setLoading(true)
 
-    // const response = await axios.get('https://fakestoreapi.com/products/')
-    // setItems(response.data)
-    setLoading(false)
-  }
-  useEffect(() => {
-    fetchData()
-  }, [])
-  if (items == null) return <p>Loading..</p>
   return (
     <>
       <Header />
       {items.map((item) => (
         <div
+          key={item.id}
           style={{
             display: 'flex',
             flexDirection: 'column',
@@ -78,8 +69,31 @@ const CheckoutPage = () => {
           </div>
         </div>
       ))}
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          backgroundColor: '#fff',
+          borderRadius: '10px',
+          boxShadow: '0 0 10px rgba(0,0,0,0.1)',
+          width: 'auto',
+          justifyContent: 'flex-start',
+          alignItems: 'center',
+          padding: '50px',
+          margin: '0 300px',
+        }}
+      >
+        <div className='total'>TOTAL: ${total}</div>
+        <div className='test-warning'>
+          *Please use the following test credit card for payments*
+          <br />
+          4242 4242 4242 4242 - Exp: 01/20 - CVV: 123
+        </div>
+        <StripeCheckoutButton price={total} />
+      </div>
     </>
   )
 }
 
 export default CheckoutPage
+// export default connect(mapStateToProps)(CheckoutPage)
